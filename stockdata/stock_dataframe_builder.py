@@ -2,7 +2,7 @@ from .data_source import DataSource
 
 import pandas as pd
 
-SECTOR_CSV = 'stockdata/csv/setor.csv'
+SECTOR_CSV = 'stockdata/csv/sector.csv'
 
 def get_dataframe(strategy):
     df = select_strategy(strategy).build_dataframe()
@@ -20,15 +20,10 @@ def select_strategy(strategy):
 
 def add_sector(df):
     sector = pd.read_csv(SECTOR_CSV, sep=';')
-    sector = sector.set_index('CÓDIGO')
-    df.insert(1, 'CÓDIGO', [stock[:4] for stock in df['ticker']])
-    df = df.set_index('CÓDIGO')
-    df = df.join(sector, on=['CÓDIGO'], how='left')
+    sector = sector.set_index('code')
+    df.insert(1, 'code', [stock[:4] for stock in df['ticker']])
+    df = df.set_index('code')
+    df = df.join(sector, on=['code'], how='left')
     df = df.reset_index()
 
-    print("Ações sem setor: ")
-    for a, b in zip(df['ticker'], df['SETOR']):
-        if (str(b) == 'nan'):
-            print(a, end=" ")
-    print("\n\n")
     return df

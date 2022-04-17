@@ -42,4 +42,4 @@ class Calculator:
 
     def print_results(self):
         result = self.df.reset_index()
-        print(result[['ticker', 'NOME', 'SETOR', 'SEGMENTO', 'ev_ebit', 'roic']])
+        print(result[['ticker', 'name', 'sector', 'segment', 'ev_ebit', 'roic']])
