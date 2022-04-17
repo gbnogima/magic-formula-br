@@ -1,4 +1,5 @@
 from .data_source import DataSource
+from .strategy import *
 
 import pandas as pd
 
