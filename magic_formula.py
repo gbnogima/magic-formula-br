@@ -1,5 +1,5 @@
 from stockdata.stock_dataframe_builder import get_dataframe
-from calculator import Calculator
+from calculator.calculator import Calculator
 
 STRATEGY = 'STATUS_INVEST_CSV'
 MIN_TRADING_VOLUME = 10000000
