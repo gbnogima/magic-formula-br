@@ -26,7 +26,7 @@ class Calculator:
         self.df = self.df[self.df['trading_volume'] > self.min_trading_volume]
 
     def filter_by_market_cap(self):
-        self.df[self.df['market_cap'] > self.min_market_cap]
+        self.df = self.df[self.df['market_cap'] > self.min_market_cap]
 
     def rank_by_ROIC(self):
         self.df['roic_rank'] = self.df['roic'].rank(ascending=False)
