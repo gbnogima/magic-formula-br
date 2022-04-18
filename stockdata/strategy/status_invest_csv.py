@@ -16,9 +16,10 @@ class StatusInvestCsv(DataSource):
         return self.STRATEGY
 
     def build_dataframe(self):
-        self.download_file()
-        self.prepare_file()
-        os.remove(self.CSV_FILE)
+        if not self.reuse_file:
+            self.download_file()
+            self.prepare_file()
+            os.remove(self.CSV_FILE)
         self.df = pd.read_csv(self.DATASET)
         self.select_columns()
         self.rename_columns()

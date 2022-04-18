@@ -8,10 +8,11 @@ parser.add_argument("-s", "--strategy", help = "Choose strategy, options: [STATU
 parser.add_argument("-t", "--min-trading-volume", help = "Choose min trading volume", default=10000000, type=int)
 parser.add_argument("-m", "--min-market-cap", help = "Choose min market cap", default=100000000, type=int)
 parser.add_argument("-r", "--result-size", help = "Choose result size", default=20, type=int)
+parser.add_argument('--reuse-file', action='store_true')
 
 args = parser.parse_args()
 print(args)
 
-stock_dataframe = get_dataframe(args.strategy)
+stock_dataframe = get_dataframe(args.strategy, args.reuse_file)
 calculator = Calculator(stock_dataframe, args.min_trading_volume, args.min_market_cap, args.result_size)
 calculator.calculate()

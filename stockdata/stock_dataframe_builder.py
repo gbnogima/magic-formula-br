@@ -5,14 +5,14 @@ import pandas as pd
 
 SECTOR_CSV = 'stockdata/csv/sector.csv'
 
-def get_dataframe(strategy):
-    df = select_strategy(strategy).build_dataframe()
+def get_dataframe(strategy, reuse_file):
+    df = select_strategy(strategy, reuse_file).build_dataframe()
     df = add_sector(df)
     return df
 
-def select_strategy(strategy):
+def select_strategy(strategy, reuse_file):
     for data_source in DataSource.__subclasses__():
-        obj = data_source()
+        obj = data_source(reuse_file)
         if obj.get_strategy() == strategy:
             print(f"Using data source strategy: {strategy}")
             return obj
